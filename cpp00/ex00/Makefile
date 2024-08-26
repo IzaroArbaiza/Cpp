@@ -1,0 +1,37 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: iarbaiza <iarbaiza@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/04 15:17:06 by iarbaiza          #+#    #+#              #
+#    Updated: 2024/08/20 17:22:41 by iarbaiza         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME := megaphone
+SRC := megaphone.cpp \
+
+CXX = c++
+RM := rm -rf
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+OBJS = $(SRC:%.cpp=%.o)
+
+all : $(NAME)
+
+$(NAME): $(OBJS)
+		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJS):%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+clean :
+		$(RM) $(OBJS)
+
+fclean : clean
+		$(RM) $(NAME)
+
+re : fclean all
+
+.PHONY : all clean fclean re
